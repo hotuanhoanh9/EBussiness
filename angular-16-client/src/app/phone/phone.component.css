@@ -1,0 +1,19 @@
+.img-size{
+    width: 30px;
+    height: 30px;
+}
+.content-box{
+    height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.err-text{
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: red;
+}
+.row{
+    padding: 0 !important;
+}

@@ -1,0 +1,26 @@
+<div class="container">
+  <div *ngIf="productItem != null">
+    <div>{{isAdd == true ? 'Add product':'Edit product' }}</div>
+    <form id="edit-from" >
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="productItem.name" autocomplete="on" required>
+      <br>
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price"  [(ngModel)]="productItem.price" autocomplete="on" required>
+      <br>
+      <button type="button" (click)="onUpdate(productItem.productId)" *ngIf="isAdd == false">Update</button>
+  </form>
+  </div>
+  <button type="button" (click)="openAddForm()" *ngIf="isAdd == false">Add new product</button>
+  <button type="button" (click)="onAdd()" *ngIf="isAdd == true">Add</button>
+  <div *ngFor="let product of products; index as i">
+    <div>{{i+1}}.productID: {{product.productId}}</div>
+    <div>name: {{product.name}}</div>
+    <div>price: {{product.price}} 
+      <button (click)="getItem(product.productId)">Edit</button>
+      <button (click)="onDelete(product.productId)">Delete</button>
+    </div>
+    <hr>
+  </div>
+  
+</div>
