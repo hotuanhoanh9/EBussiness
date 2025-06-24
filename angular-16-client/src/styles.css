@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body, html {
+  height: 100%; /* Ensure html and body take full viewport height */
+  margin: 0;   /* Remove default body margin */
+  padding: 0;  /* Remove default body padding */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+body {
+  /* Using the shorthand property */
+  background: url('/assets/image/background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover; /* For older Safari/Chrome */
+  -moz-background-size: cover;    /* For older Firefox */
+  -o-background-size: cover;      /* For older Opera */
+  background-size: cover;         /* Standard property */
+
+  /* Optional: Text color for readability over dark backgrounds */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}

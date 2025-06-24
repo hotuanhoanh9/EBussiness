@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AddProductComponent } from './add-procduct/add-product.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { PhoneComponent } from './phone/phone.component';
@@ -19,6 +20,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   declarations: [
     AppComponent,
     HomeComponent,
+    AddProductComponent,
     ProfileComponent,
     ProductComponent,
     PhoneComponent,

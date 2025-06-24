@@ -9,6 +9,11 @@
     justify-content: center;
     flex-direction: column;
 }
+.center-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .err-text{
     font-size: 18px;
     margin-bottom: 20px;
@@ -16,4 +21,8 @@
 }
 .row{
     padding: 0 !important;
+}
+.login-title{
+    font-size: 32px;
+    color: rgb(171 39 44);
 }

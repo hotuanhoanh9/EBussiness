@@ -1,29 +1,33 @@
 <div class="container content-box">
-  <h3>Đăng nhập</h3>
+
   <div class="row">
-    <div class="row mb-2">
-      <label>Tài khoản</label>
-      <input type="text" class="form-control" 
-        placeholder="Nhập tài khoản" aria-label="phone" 
-        aria-describedby="basic-addon1" 
-        maxlength="10"
-        [(ngModel)]="username">
-      <span *ngIf="err1" class="err-text">Vui lòng nhập tài khoản</span>
-    </div>
-    
-    <div class="row mb-2">
-      <label>Mật khẩu</label>
-      <input type="password" class="form-control" 
-        placeholder="Nhập mật khẩu" aria-label="phone" 
-        aria-describedby="basic-addon1" 
-        maxlength="10"
-        [(ngModel)]="password">
-        
-      <div *ngIf="err2" class="err-text">Vui lòng nhập mật khẩu</div>
-    </div>
-    <div class="row">
-      <button type="button" class="btn btn-primary btn-block" (click)="navigateToProductPage()"
-      [disabled]="(username == '' && password == '')">Đăng nhập</button>
+    <h3 class="center-box login-title">Đăng nhập</h3>
+    <div class="col-12">
+      <div class="row mb-2">
+        <label>Tài khoản</label>
+        <input type="text" class="form-control" 
+          placeholder="Nhập tài khoản" aria-label="phone" 
+          aria-describedby="basic-addon1" 
+          maxlength="10"
+          [(ngModel)]="username">
+        <span *ngIf="err1" class="err-text">Vui lòng nhập tài khoản</span>
+      </div>
+      
+      <div class="row mb-2">
+        <label>Mật khẩu</label>
+        <input type="password" class="form-control" 
+          placeholder="Nhập mật khẩu" aria-label="phone" 
+          aria-describedby="basic-addon1" 
+          maxlength="10"
+          [(ngModel)]="password">
+          
+        <div *ngIf="err2" class="err-text">Vui lòng nhập mật khẩu</div>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-primary btn-block" (click)="navigateToProductPage()"
+        [disabled]="(username == '' && password == '')">Đăng nhập</button>
+      </div>
     </div>
   </div>
+  
 </div>

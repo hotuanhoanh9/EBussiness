@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { Subscription } from 'rxjs';
-import { WebsocketService } from "../../app/websocket.service";
-import { ChatService } from "../../app/chat.service";
+import { WebsocketService } from "../websocket.service";
+import { ChatService } from "../chat.service";
 import { SocketioService } from '../socketio.service';
 import { HomeService } from '../_services/home.service';
-import { FirebaseDataService } from './../_services/firebase-data.service';
+import { FirebaseDataService } from '../_services/firebase-data.service';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   keys:any;
   productItem: any;
   isAdd: boolean = false;
+  categories: any;
   constructor(
 
     private userService: UserService,
@@ -50,7 +51,8 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     // this.products = this.firebaseDataService.getProducts();
-    
+    this.initCategory();
+    this.initializeProducts();
     
     this.firebaseDataService.getProducts().subscribe({
       next: data => {
@@ -182,6 +184,98 @@ export class HomeComponent implements OnInit {
       name: "",
       price: 0
     }
+  }
+  initializeProducts() {
+    this.products = [
+        {
+            id: 'PROD001',
+            name: 'Wireless Bluetooth 5.0 Earbuds',
+            description: 'High-fidelity sound with active noise cancellation.',
+            price: 1250000, // VND
+            imageUrl: '/assets/image/earbud.jpg',
+            category: 'Electronics',
+            stock: 150,
+            rating: 4.5,
+            reviewsCount: 1234,
+            location: 'Ho Chi Minh'
+        },
+        {
+            id: 'PROD002',
+            name: 'Smartwatch X1',
+            description: 'Fitness tracker with heart rate monitor, GPS, and notifications.',
+            price: 2800000, // VND
+            imageUrl: '/assets/image/smartwatch.jpg',
+            category: 'Wearables',
+            stock: 75,
+            rating: 4.8,
+            reviewsCount: 987,
+            location: 'Hanoi'
+        },
+        {
+            id: 'PROD003',
+            name: 'Mini Portable USB Rechargeable Blender',
+            description: 'Perfect for shakes and smoothies on the go. 300ml capacity.',
+            price: 450000, // VND
+            imageUrl: '/assets/image/usb.png',
+            category: 'Home Appliances',
+            stock: 200,
+            rating: 3.9,
+            reviewsCount: 543,
+            location: 'Da Nang'
+        },
+        {
+            id: 'PROD004',
+            name: 'RGB Gaming Mouse',
+            description: 'High-precision gaming mouse with customizable RGB lighting and macros.',
+            price: 890000, // VND
+            imageUrl: '/assets/image/smartwatch.jpg',
+            category: 'Gaming',
+            stock: 120,
+            rating: 5.0,
+            reviewsCount: 2500,
+            location: 'Can Tho'
+        },
+        {
+            id: 'PROD005',
+            name: '8-in-1 USB-C Hub',
+            description: 'Multi-port adapter with HDMI, USB 3.0, SD/TF card readers, and PD charging.',
+            price: 720000, // VND
+            imageUrl: '/assets/image/smartwatch.jpg',
+            category: 'Accessories',
+            stock: 90,
+            rating: 4.2,
+            reviewsCount: 789,
+            location: 'Ho Chi Minh'
+        }
+    ];
+  }
+  formatPrice(price: number): string {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(price);
+  }
+
+  getStarArray(count: number): number[] {
+    return Array(count).fill(0).map((_, i) => i + 1);
+  }
+
+  // Helper to round rating for display (e.g., 4.3 becomes 4, 4.7 becomes 5)
+  getRoundedRating(rating: number | undefined): number {
+    return Math.round(rating || 0);
+  }
+  initCategory(){
+    this.categories = [
+      { id: 'CAT001', name: 'Điện tử', iconUrl: '/assets/image/gray-circle.jpg' },
+      { id: 'CAT002', name: 'Thời trang', iconUrl: '/assets/image/gray-circle.jpg' },
+      { id: 'CAT003', name: 'Thức ăn', iconUrl: '/assets/image/gray-circle.jpg' },
+      { id: 'CAT004', name: 'Tái chế', iconUrl: '/assets/image/recycle.png' },
+      { id: 'CAT005', name: 'Sách', iconUrl: '/assets/image/gray-circle.jpg' },
+      { id: 'CAT006', name: 'Sức khỏe', iconUrl: '/assets/image/gray-circle.jpg' },
+      { id: 'CAT007', name: 'Trẻ em', iconUrl: '/assets/image/gray-circle.jpg' },
+    ];
   }
 }
 
