@@ -1,0 +1,75 @@
+<div class="container">
+  <!-- <div *ngIf="productItem != null">
+    <div>{{isAdd == true ? 'Add product':'Edit product' }}</div>
+    <form id="edit-from" >
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="productItem.name" autocomplete="on" required>
+      <br>
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price"  [(ngModel)]="productItem.price" autocomplete="on" required>
+      <br>
+      <button type="button" (click)="onUpdate(productItem.productId)" *ngIf="isAdd == false">Update</button>
+  </form>
+  </div>
+  <button type="button" (click)="openAddForm()" *ngIf="isAdd == false">Add new product</button>
+  <button type="button" (click)="onAdd()" *ngIf="isAdd == true">Add</button> -->
+  <!-- <div *ngFor="let product of products; index as i">
+    <div>{{i+1}}.productID: {{product.productId}}</div>
+    <div>name: {{product.name}}</div>
+    <div>price: {{product.price}} 
+      <button (click)="getItem(product.productId)">Edit</button>
+      <button (click)="onDelete(product.productId)">Delete</button>
+    </div>
+    <hr>
+  </div> -->
+  <div class="shopee-categories-section">
+    <div class="shopee-categories-header">
+      <h2>Danh mục</h2>
+      <a href="#" class="see-all-link">Xem tất cả ></a>
+    </div>
+
+    <div class="category-grid">
+      <a
+        *ngFor="let category of categories;"
+        [href]="category.link || '#'"
+        class="category-item"
+      >
+        <div class="category-icon-wrapper">
+          <img [src]="category.iconUrl" [alt]="category.name" class="category-icon">
+        </div>
+        <span class="category-name">{{ category.name }}</span>
+      </a>
+    </div>
+  </div>
+  <div class="product-listing">
+    <div class="product-grid">
+
+        <div class="product-card" *ngFor="let product of products;">
+            <a href="#" class="product-link">
+                <div class="product-image-container">
+                    <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <div class="product-price">
+                        <span class="price-value">{{ formatPrice(product.price).replace('₫', '') }}</span>
+                        <span class="currency">₫</span>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-rating">
+                            <span class="star"
+                                  *ngFor="let i of getStarArray(5)"
+                                  [ngClass]="{'rated': getRoundedRating(product.rating) >= i}">
+                                &#9733;
+                            </span>
+                            <span class="rating-count">({{ product.reviewsCount | number:'1.0-0' || 0 }})</span>
+                        </div>
+                        <span class="location">{{ product.location || '' }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+  </div>
+</div>

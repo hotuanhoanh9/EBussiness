@@ -1,0 +1,23 @@
+<div class="container">
+  
+  <div>
+    <div *ngFor="let product of products">
+      <div class="product-box">
+        <div class="img-box">
+          <img [src]="product.image" alt="" class="img-size">
+        </div>
+        <div class="info-box" (click)="navigateToQRPage(product)">
+          <div class="title-content">{{ product.title}}</div>
+          <div>{{ product.price}}</div>
+          <!-- <div>
+            <i class="fa fa-minus fa-2xl" (click)="decreaseQuantity(product._id)"></i>
+             {{product.quantity}} 
+            <i class="fa fa-plus fa-2xl" (click)="increaseQuantity(product._id)"></i>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- <div>Tổng tiền: {{total}}</div> -->
+    <!-- <button type="button" class="btn btn-primary" (click)="navigateToQRPage()">Thanh toán</button> -->
+  </div>
+</div>

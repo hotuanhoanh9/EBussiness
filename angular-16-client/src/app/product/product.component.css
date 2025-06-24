@@ -1,0 +1,17 @@
+.img-size{
+    width: 150px;
+    height: 150px;
+}
+.img-box{
+    width: fit-content;
+}
+.product-box{
+    display: flex;
+}
+.title-content{
+    font-size: 22px;
+    font-weight: 600;
+}
+.icon-size{
+    font-size: 25px;
+}
