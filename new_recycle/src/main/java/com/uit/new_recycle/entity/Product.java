@@ -20,6 +20,10 @@ public class Product {
 
     private Integer salePercent;
 
+    public Product() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -66,5 +70,26 @@ public class Product {
 
     public void setSalePercent(Integer salePercent) {
         this.salePercent = salePercent;
+    }
+
+    public Product(Long id, String name, Double price, Integer soldNumber, String imagePath, Integer salePercent) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.soldNumber = soldNumber;
+        this.imagePath = imagePath;
+        this.salePercent = salePercent;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", soldNumber=" + soldNumber +
+                ", imagePath='" + imagePath + '\'' +
+                ", salePercent=" + salePercent +
+                '}';
     }
 }
