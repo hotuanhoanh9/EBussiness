@@ -18,42 +18,45 @@ export class ProductComponent implements OnInit {
     public productService: ProductService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.phone = params['phone']; 
-  });
-    this.productService.getProducts().subscribe({
-      next: data => {
-        this.products = JSON.parse(data).products;
-      },
-      error: err => {
-        if (err.error) {
-          try {
-            const res = JSON.parse(err.error);
-            this.content = res.message;
-          } catch {
-            this.content = `Error with status: ${err.status} - ${err.statusText}`;
-          }
-        } else {
-          this.content = `Error with status: ${err.status}`;
-        }
-      }
+    this.productService.getProducts().subscribe(data => {
+      this.products = data; // Gán dữ liệu nhận được vào biến products
     });
-    this.products = [
-      {
-        "ID": 1,
-        "title": "San pham 1",
-        "price": 1000,
-        "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-        "quantity": 0
-      },
-      {
-        "ID": 2,
-        "title": "San pham 2",
-        "price": 2000,
-        "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-        "quantity": 0
-      }
-    ]
+    // this.activatedRoute.queryParams.subscribe(params => {
+    //   this.phone = params['phone']; 
+    // });
+    // this.productService.getProducts().subscribe({
+    //   next: data => {
+    //     this.products = JSON.parse(data).products;
+    //   },
+    //   error: err => {
+    //     if (err.error) {
+    //       try {
+    //         const res = JSON.parse(err.error);
+    //         this.content = res.message;
+    //       } catch {
+    //         this.content = `Error with status: ${err.status} - ${err.statusText}`;
+    //       }
+    //     } else {
+    //       this.content = `Error with status: ${err.status}`;
+    //     }
+    //   }
+    // });
+    // this.products = [
+    //   {
+    //     "ID": 1,
+    //     "title": "San pham 1",
+    //     "price": 1000,
+    //     "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
+    //     "quantity": 0
+    //   },
+    //   {
+    //     "ID": 2,
+    //     "title": "San pham 2",
+    //     "price": 2000,
+    //     "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
+    //     "quantity": 0
+    //   }
+    // ]
   }
   decreaseQuantity(id: string){
     for(let i = 0; i< this.products.length; i++){
@@ -76,5 +79,16 @@ export class ProductComponent implements OnInit {
     localStorage.setItem("product", JSON.stringify(product));
     localStorage.setItem("phone", this.phone);
     window.location.href = '/home';
+  }
+  addNewProduct(): void {
+    window.location.href = '/add-product';
+  }
+  formatPrice(price: number): string {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(price);
   }
 }

@@ -5,7 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { PhoneComponent } from './phone/phone.component';
 import { SuccessComponent } from './success/success.component';
-import { AddProductComponent } from './add-procduct/add-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
 const routes: Routes = [
   { path: 'products', component: ProductComponent },
   { path: 'home', component: HomeComponent },

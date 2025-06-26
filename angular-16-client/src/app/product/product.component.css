@@ -15,3 +15,101 @@
 .icon-size{
     font-size: 25px;
 }
+.container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+h1, h3 {
+    color: #ee4d2d; /* Màu cam đặc trưng của Shopee */
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.add-new-btn {
+    display: block;
+    width: 250px;
+    padding: 15px 25px;
+    margin: 0 auto 40px auto;
+    background-color: #ee4d2d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.add-new-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+.no-products-message {
+    text-align: center;
+    color: #888;
+    padding: 50px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    margin-top: 30px;
+    font-size: 1.3em;
+    background-color: #fcfcfc;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.product-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.product-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px;
+    background-color: #fefefe;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-item:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-item h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #34495e;
+    font-size: 1.7em;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.product-item p {
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1em;
+}
+
+.product-item p strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.product-item p:last-child {
+    margin-bottom: 0;
+    font-size: 0.9em;
+    color: #777;
+}

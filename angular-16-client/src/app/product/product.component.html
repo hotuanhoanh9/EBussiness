@@ -1,23 +1,20 @@
 <div class="container">
-  
-  <div>
-    <div *ngFor="let product of products">
-      <div class="product-box">
-        <div class="img-box">
-          <img [src]="product.image" alt="" class="img-size">
-        </div>
-        <div class="info-box" (click)="navigateToQRPage(product)">
-          <div class="title-content">{{ product.title}}</div>
-          <div>{{ product.price}}</div>
-          <!-- <div>
-            <i class="fa fa-minus fa-2xl" (click)="decreaseQuantity(product._id)"></i>
-             {{product.quantity}} 
-            <i class="fa fa-plus fa-2xl" (click)="increaseQuantity(product._id)"></i>
-          </div> -->
-        </div>
-      </div>
+    <h1 class="text-center">Danh sách sản phẩm của tôi</h1>
+    
+    <button (click)="addNewProduct()" class="add-new-btn">Thêm sản phẩm mới</button>
+    
+    <div *ngIf="products.length === 0" class="no-products-message">
+        <p>Không có sản phẩm nào để hiển thị.</p>
     </div>
-    <!-- <div>Tổng tiền: {{total}}</div> -->
-    <!-- <button type="button" class="btn btn-primary" (click)="navigateToQRPage()">Thanh toán</button> -->
-  </div>
+
+    <div class="product-list-grid">
+        <div *ngFor="let product of products" class="product-item">
+            <h3>{{ product.name }}</h3>
+            <p><strong>Giá:</strong> <span class="product-price">
+                        <span class="price-value">{{ formatPrice(product.price).replace('₫', '') }}</span>
+                        <span class="currency">₫</span>
+            </span></p>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
 </div>
