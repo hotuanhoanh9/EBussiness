@@ -91,4 +91,7 @@ export class ProductComponent implements OnInit {
         maximumFractionDigits: 0
     }).format(price);
   }
+  navigateToDetail(id: any){
+    window.location.href = "/add-product/"+ id
+  }
 }
