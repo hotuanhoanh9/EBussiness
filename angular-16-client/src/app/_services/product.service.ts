@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/';
-
+const API_URL = 'http://localhost:8080/api/products';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':"http://localhost:4200/*",
+    'Authorization': 'Bearer '+ localStorage.getItem('token')
+     })
+};
 @Injectable({
   providedIn: 'root',
 })
@@ -19,8 +24,8 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<any> {
-    //return this.http.get(API_URL + 'products', { responseType: 'text' });
-    return of(this.products)
+    return this.http.get(API_URL ,httpOptions);
+    //return of(this.products)
   }
 
   

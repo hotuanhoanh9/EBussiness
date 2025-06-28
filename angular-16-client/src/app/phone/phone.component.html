@@ -8,7 +8,6 @@
         <input type="text" class="form-control" 
           placeholder="Nhập tài khoản" aria-label="phone" 
           aria-describedby="basic-addon1" 
-          maxlength="10"
           [(ngModel)]="username">
         <span *ngIf="err1" class="err-text">Vui lòng nhập tài khoản</span>
       </div>
@@ -23,8 +22,11 @@
           
         <div *ngIf="err2" class="err-text">Vui lòng nhập mật khẩu</div>
       </div>
+      <p *ngIf="registrationMessage" [class.success-message]="isSuccess" [class.error-message]="!isSuccess" class="global-message">
+        {{ registrationMessage }}
+    </p>
       <div class="row">
-        <button type="button" class="btn btn-primary btn-block" (click)="navigateToProductPage()"
+        <button type="button" class="btn btn-primary btn-block" (click)="onSubmit()"
         [disabled]="(username == '' && password == '')">Đăng nhập</button>
       </div>
     </div>

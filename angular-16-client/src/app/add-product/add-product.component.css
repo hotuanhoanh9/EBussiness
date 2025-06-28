@@ -1,0 +1,322 @@
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+h1, h3 {
+    color: #ee4d2d; /* Màu cam đặc trưng của Shopee */
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+p.text-muted {
+    font-size: 0.95em;
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-top: 1px solid #e0e0e0;
+}
+.form-label {
+    font-weight: 500;
+    color: #555;
+}
+.form-text {
+    font-size: 0.85em;
+    color: #777;
+}
+
+/* Style cho nút submit */
+.btn-primary {
+    background-color: #ee4d2d;
+    border-color: #ee4d2d;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #d13d22;
+    border-color: #d13d22;
+}
+
+/* Style cho phần preview hình ảnh */
+.image-previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Khoảng cách giữa các hình ảnh */
+    margin-top: 15px;
+}
+
+.image-preview-item {
+    position: relative;
+    width: 100px; /* Chiều rộng cố định cho mỗi hình preview */
+    height: 100px; /* Chiều cao cố định */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo hình ảnh lấp đầy khung */
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(220, 53, 69, 0.8); /* Nút đỏ mờ */
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.9em;
+    cursor: pointer;
+    line-height: 1; /* Căn giữa icon */
+}
+.remove-image-btn:hover {
+    background-color: rgba(220, 53, 69, 1);
+}
+
+
+@media (max-width: 767px) {
+    .container {
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h3 {
+        font-size: 1.3em;
+    }
+    .image-preview-item {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.image-previews {
+    display: flex; /* Dùng flexbox để các hình ảnh nằm cạnh nhau */
+    flex-wrap: wrap; /* Cho phép các hình ảnh xuống dòng nếu hết chỗ */
+    gap: 10px; /* Khoảng cách giữa các hình ảnh */
+    margin-top: 15px;
+}
+
+.image-preview-item {
+    position: relative;
+    width: 100px; /* Chiều rộng cố định cho mỗi hình preview */
+    height: 100px; /* Chiều cao cố định */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden; /* Đảm bảo hình ảnh không tràn ra ngoài khung */
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo hình ảnh lấp đầy khung mà không bị méo */
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(220, 53, 69, 0.8); /* Nút đỏ mờ */
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.9em;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10; /* Đảm bảo nút nằm trên hình ảnh */
+}
+.remove-image-btn:hover {
+    background-color: rgba(220, 53, 69, 1);
+}
+
+/* Các responsive media queries cũng áp dụng cho phần này để hình ảnh co giãn tốt */
+@media (max-width: 767px) {
+    .image-preview-item {
+        width: 80px;
+        height: 80px;
+    }
+}
+product-status-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 2em;
+}
+
+.current-stage {
+  margin-bottom: 30px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.current-stage p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.stage-name {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #007bff; /* Default color for current stage */
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.stage-name.highlight {
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+}
+
+/* Timeline Styling */
+.stage-timeline {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.stage-timeline h3 {
+  color: #444;
+  margin-bottom: 25px;
+  font-size: 1.5em;
+}
+
+.timeline-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 20px;
+}
+
+.timeline-steps::before {
+  content: '';
+  position: absolute;
+  top: 17%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #e0e0e0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2; /* Ensure steps are above the line */
+  flex: 1; /* Distribute steps evenly */
+    padding: 0 5px;
+}
+
+.step-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  border: 3px solid #ccc; /* Default border */
+}
+
+.step-label {
+  font-size: 0.65em;;
+  color: #777;
+  text-align: center;
+  white-space: nowrap; /* Prevent wrapping for labels */
+}
+
+.timeline-step.completed .step-circle {
+  background-color: #5cb85c; /* Green for completed */
+  border-color: #5cb85c;
+}
+
+.timeline-step.active .step-circle {
+  background-color: #ee4d2d; /* Blue for active */
+  border-color: #ee4d2d;
+}
+
+.timeline-step.active .step-label {
+  font-weight: bold;
+  color: #ee4d2d;
+}
+
+/* Update Button */
+.update-button {
+    background-color: #ee4d2d;
+    color: white;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.update-button:hover {
+  background-color: #ee4d2d;
+  transform: translateY(-2px);
+}
+
+.update-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.update-message {
+  margin-top: 25px;
+  padding: 15px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  font-size: 1em;
+}
+.orange-text{
+    color: #ee4d2d;
+}

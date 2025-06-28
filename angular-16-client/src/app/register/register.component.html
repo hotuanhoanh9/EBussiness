@@ -1,0 +1,51 @@
+<div class="register-container">
+    <h3>Đăng ký tài khoản</h3>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="username" formControlName="username">
+            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error-message">
+                Tên đăng nhập là bắt buộc.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" formControlName="password">
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+                <span *ngIf="registerForm.get('password')?.errors?.['required']">Mật khẩu là bắt buộc.</span>
+                <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Mật khẩu phải có ít nhất 6 ký tự.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="accountName">Tên chủ tài khoản:</label>
+            <input type="text" id="accountName" formControlName="accountName">
+            <div *ngIf="registerForm.get('accountName')?.invalid && registerForm.get('accountName')?.touched" class="error-message">
+                Tên chủ tài khoản là bắt buộc.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="bankName">Tên ngân hàng:</label>
+            <input type="text" id="bankName" formControlName="bankName">
+            <div *ngIf="registerForm.get('bankName')?.invalid && registerForm.get('bankName')?.touched" class="error-message">
+                Tên ngân hàng là bắt buộc.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="bankNumber">Số tài khoản ngân hàng:</label>
+            <input type="text" id="bankNumber" formControlName="bankNumber">
+            <div *ngIf="registerForm.get('bankNumber')?.invalid && registerForm.get('bankNumber')?.touched" class="error-message">
+                <span *ngIf="registerForm.get('bankNumber')?.errors?.['required']">Số tài khoản là bắt buộc.</span>
+                <span *ngIf="registerForm.get('bankNumber')?.errors?.['pattern']">Số tài khoản chỉ được chứa số.</span>
+            </div>
+        </div>
+        <button type="submit" [disabled]="registerForm.invalid">Đăng Ký</button>
+    </form>
+
+    <p *ngIf="registrationMessage" [class.success-message]="isSuccess" [class.error-message]="!isSuccess" class="global-message">
+        {{ registrationMessage }}
+    </p>
+</div>

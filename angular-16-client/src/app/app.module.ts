@@ -15,6 +15,8 @@ import { ProductComponent } from './product/product.component';
 import { PhoneComponent } from './phone/phone.component';
 import { SuccessComponent } from './success/success.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     ProfileComponent,
     ProductComponent,
     PhoneComponent,
+    RegisterComponent,
     SuccessComponent
   ],
   imports: [
@@ -34,7 +37,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

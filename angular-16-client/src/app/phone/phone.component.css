@@ -3,11 +3,19 @@
     height: 30px;
 }
 .content-box{
-    height: calc(100vh - 100px);
+    height: calc(60vh - 100px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: 50px auto; /* Canh giữa container */
 }
 .center-box{
     display: flex;
@@ -24,5 +32,5 @@
 }
 .login-title{
     font-size: 32px;
-    color: rgb(171 39 44);
+    color: #ee4d22;
 }

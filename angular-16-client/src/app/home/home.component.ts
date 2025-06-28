@@ -197,7 +197,7 @@ export class HomeComponent implements OnInit {
             stock: 150,
             rating: 4.5,
             reviewsCount: 1234,
-            location: 'Ho Chi Minh'
+            location: 'Hồ Chí Minh'
         },
         {
             id: 'PROD002',
@@ -209,7 +209,7 @@ export class HomeComponent implements OnInit {
             stock: 75,
             rating: 4.8,
             reviewsCount: 987,
-            location: 'Hanoi'
+            location: 'Hà Nội'
         },
         {
             id: 'PROD003',
@@ -221,7 +221,7 @@ export class HomeComponent implements OnInit {
             stock: 200,
             rating: 3.9,
             reviewsCount: 543,
-            location: 'Da Nang'
+            location: 'Đà Nẵng'
         },
         {
             id: 'PROD004',
@@ -233,7 +233,7 @@ export class HomeComponent implements OnInit {
             stock: 120,
             rating: 5.0,
             reviewsCount: 2500,
-            location: 'Can Tho'
+            location: 'Cần Thơ'
         },
         {
             id: 'PROD005',
@@ -245,7 +245,7 @@ export class HomeComponent implements OnInit {
             stock: 90,
             rating: 4.2,
             reviewsCount: 789,
-            location: 'Ho Chi Minh'
+            location: 'Hồ Chí Minh'
         }
     ];
   }

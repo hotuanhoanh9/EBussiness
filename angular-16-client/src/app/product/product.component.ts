@@ -14,13 +14,15 @@ export class ProductComponent implements OnInit {
   content: any;
   total: any = 0;
   phone: string = '';
+  errorMessage: string = '';
   constructor(private storageService: StorageService,
     public productService: ProductService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => {
-      this.products = data; // Gán dữ liệu nhận được vào biến products
-    });
+    this.getProducts();
+    // this.productService.getProducts().subscribe(data => {
+    //   this.products = data; // Gán dữ liệu nhận được vào biến products
+    // });
     // this.activatedRoute.queryParams.subscribe(params => {
     //   this.phone = params['phone']; 
     // });
@@ -93,5 +95,24 @@ export class ProductComponent implements OnInit {
   }
   navigateToDetail(id: any){
     window.location.href = "/add-product/"+ id
+  }
+  getProducts(): void {
+    // Call the getProducts method from your service
+    this.productService.getProducts().subscribe({
+      next: (data: any[]) => {
+        // On successful response, assign the data to the products array
+        this.products = data;
+        this.errorMessage = ''; // Clear any previous errors
+        console.log('Products fetched successfully:', this.products);
+      },
+      error: (error: any) => {
+        // Handle errors
+        console.error('Error fetching products:', error);
+        this.errorMessage = 'Failed to load products. Please try again later.';
+        if (error.message) {
+            this.errorMessage += ` (${error.message})`;
+        }
+      }
+    });
   }
 }

@@ -6,12 +6,14 @@ import { ProductComponent } from './product/product.component';
 import { PhoneComponent } from './phone/phone.component';
 import { SuccessComponent } from './success/success.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   { path: 'products', component: ProductComponent },
   { path: 'home', component: HomeComponent },
   { path: 'add-product/:id', component: AddProductComponent },
   { path: 'add-product', component: AddProductComponent },
   { path: 'login', component: PhoneComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'result', component: SuccessComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
