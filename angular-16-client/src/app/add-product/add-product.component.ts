@@ -192,7 +192,7 @@ export class AddProductComponent implements OnInit {
   }
   navigateToPayment(){
     let info = {
-      amount: 111999,
+      amount: this.product.price,
       currency:'vnd',
       description: 'thanh toan san pham'
     }
