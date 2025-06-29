@@ -20,6 +20,11 @@ public class Product {
 
     private Integer salePercent;
 
+    private String tinhTrangMay;
+
+    private String accountID;
+
+
     public Product() {
 
     }
@@ -72,13 +77,31 @@ public class Product {
         this.salePercent = salePercent;
     }
 
-    public Product(Long id, String name, Double price, Integer soldNumber, String imagePath, Integer salePercent) {
+    public String getTinhTrangMay() {
+        return tinhTrangMay;
+    }
+
+    public void setTinhTrangMay(String tinhTrangMay) {
+        this.tinhTrangMay = tinhTrangMay;
+    }
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public Product(Long id, String name, Double price, Integer soldNumber, String imagePath, Integer salePercent, String tinhTrangMay, String accountID) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.soldNumber = soldNumber;
         this.imagePath = imagePath;
         this.salePercent = salePercent;
+        this.tinhTrangMay = tinhTrangMay;
+        this.accountID = accountID;
     }
 
     @Override
@@ -90,6 +113,8 @@ public class Product {
                 ", soldNumber=" + soldNumber +
                 ", imagePath='" + imagePath + '\'' +
                 ", salePercent=" + salePercent +
+                ", tinhTrangMay='" + tinhTrangMay + '\'' +
+                ", accountID='" + accountID + '\'' +
                 '}';
     }
 }

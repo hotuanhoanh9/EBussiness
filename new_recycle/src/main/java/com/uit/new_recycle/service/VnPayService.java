@@ -31,8 +31,6 @@ public class VnPayService {
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String vnp_CreateDate = formatter.format(cld.getTime());
-        //String vnp_CreateDate = java.time.LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", "2.1.0");
         vnp_Params.put("vnp_Command", "pay");

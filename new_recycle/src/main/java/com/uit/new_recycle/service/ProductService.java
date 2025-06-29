@@ -32,6 +32,8 @@ public class ProductService {
             product.setSoldNumber(updatedProduct.getSoldNumber());
             product.setImagePath(updatedProduct.getImagePath());
             product.setSalePercent(updatedProduct.getSalePercent());
+            product.setTinhTrangMay(updatedProduct.getTinhTrangMay());
+            product.setAccountID(updatedProduct.getAccountID());
             return productRepository.save(product);
         }).orElseThrow(() -> new RuntimeException("Product not found with id " + id));
     }

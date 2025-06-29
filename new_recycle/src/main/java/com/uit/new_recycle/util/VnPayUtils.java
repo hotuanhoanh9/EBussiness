@@ -27,7 +27,7 @@ public class VnPayUtils {
         Collections.sort(fieldNames);
         StringBuilder query = new StringBuilder();
         for (String fieldName : fieldNames) {
-            String value = URLEncoder.encode(fields.get(fieldName), StandardCharsets.US_ASCII.toString());
+            String value = URLEncoder.encode(fields.get(fieldName), StandardCharsets.UTF_8.toString());
             if (query.length() > 0) query.append("&");
             query.append(fieldName).append("=").append(value);
         }
