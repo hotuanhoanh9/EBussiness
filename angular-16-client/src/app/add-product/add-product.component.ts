@@ -113,21 +113,8 @@ export class AddProductComponent implements OnInit {
     console.log('Dữ liệu form đã gửi:', this.productForm);
     console.log('Các file hình ảnh đã chọn:', this.selectedFiles);
 
-    // Ở đây, bạn sẽ gửi dữ liệu `this.productForm` và `this.selectedFiles`
-    // lên server thông qua một Service (ví dụ: HttpClient).
-    // Ví dụ:
-    // const formData = new FormData();
-    // formData.append('productData', JSON.stringify(this.productForm));
-    // this.selectedFiles.forEach((file, index) => {
-    //   formData.append(`image_${index}`, file, file.name);
-    // });
-    // this.yourApiService.submitProduct(formData).subscribe(
-    //   response => console.log('Đăng ký thành công', response),
-    //   error => console.error('Lỗi khi đăng ký', error)
-    // );
-
     alert('Form đã được gửi! (Kiểm tra console để xem dữ liệu)');
-    // Bạn có thể reset form sau khi gửi thành công
+    
     // this.productForm = {};
     // this.selectedFiles = [];
     // this.imagePreviews = [];
