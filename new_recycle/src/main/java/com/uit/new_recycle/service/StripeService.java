@@ -16,9 +16,8 @@ public class StripeService {
         SessionCreateParams params =
                 SessionCreateParams.builder()
                         .setMode(SessionCreateParams.Mode.PAYMENT)
-                        //.setSuccessUrl("http://localhost:8080/api/strip/payment/success")
-                        .setSuccessUrl("http://localhost:8080/api/strip/payment/success?session_id={CHECKOUT_SESSION_ID}")
-                        .setCancelUrl("http://localhost:8080/api/strip/payment/cancel")
+                        .setSuccessUrl("http://localhost:8080/api/payment/success?session_id={CHECKOUT_SESSION_ID}")
+                        .setCancelUrl("http://localhost:8080/api/payment/cancel")
                         .addLineItem(
                                 SessionCreateParams.LineItem.builder()
                                         .setQuantity(1L)
@@ -33,7 +32,6 @@ public class StripeService {
                                                         .build())
                                         .build())
                         .build();
-
         Session session = Session.create(params);
         return session.getUrl(); // Trả về link để redirect user
     }

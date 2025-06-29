@@ -22,7 +22,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 @RestController
-@RequestMapping("/api/strip/payment")
+@RequestMapping("/api/payment")
 public class StripeController {
     private final StripeService stripeService;
 
@@ -70,54 +70,5 @@ public class StripeController {
     @GetMapping("/cancel")
     public String paymentCancel() {
         return "❌ Đã hủy thanh toán.";
-    }
-
-    @PostMapping("/webhook")
-    public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) {
-        String payload = getBody(request);
-        String sigHeader = request.getHeader("Stripe-Signature");
-
-        try {
-            Event event = Webhook.constructEvent(payload, sigHeader, endpointSecret);
-
-            if ("checkout.session.completed".equals(event.getType())) {
-                EventDataObjectDeserializer dataObjectDeserializer = event.getDataObjectDeserializer();
-                if (dataObjectDeserializer.getObject().isPresent()) {
-                    Session session = (Session) dataObjectDeserializer.getObject().get();
-                    StripePayment payment = new StripePayment();
-                    payment.setSessionId(session.getId());
-                    payment.setPaymentIntentId(session.getPaymentIntent());
-                    payment.setAmount(session.getAmountTotal());
-                    payment.setCurrency(session.getCurrency());
-                    payment.setEmail(session.getCustomerEmail());
-                    payment.setStatus("succeeded");
-
-                    // Convert timestamp to String date
-                    String createdAt = Instant.ofEpochSecond(session.getCreated())
-                            .atZone(ZoneId.systemDefault())
-                            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                    payment.setCreatedAt(createdAt);
-
-                    paymentRepository.save(payment);
-                }
-            }
-
-            return ResponseEntity.ok("Webhook received");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Webhook error: " + e.getMessage());
-        }
-    }
-
-    private String getBody(HttpServletRequest request) {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = request.getReader()) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to read request body");
-        }
-        return sb.toString();
     }
 }
