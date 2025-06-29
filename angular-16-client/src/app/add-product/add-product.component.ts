@@ -9,6 +9,7 @@ import { FirebaseDataService } from '../_services/firebase-data.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../_services/product.service';
+import { PaymentService } from '../_services/payment.service';
 
 @Component({
   selector: 'app-add-product',
@@ -65,7 +66,7 @@ export class AddProductComponent implements OnInit {
   productId: string | null = null;
   isEdit = false;
   errorMessage: any;
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductService, private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -203,7 +204,22 @@ export class AddProductComponent implements OnInit {
       });
   }
   navigateToPayment(){
-    window.location.href = '/payment'
+    let info = {
+      amount: 111999,
+      currency:'vnd',
+      description: 'thanh toan san pham'
+    }
+    this.paymentService.createPayment(info).subscribe({
+        next: (response) => {
+          console.log('response', response);
+          window.open(response, '_blank') 
+          
+        },
+        error: (error: any) => {
+          // Xử lý lỗi từ API
+          console.error('Error payment:', error);
+        }
+      });
   }
 }
 
