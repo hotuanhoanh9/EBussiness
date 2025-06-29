@@ -17,6 +17,8 @@ import { SuccessComponent } from './success/success.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AllProductComponent } from './all-product/all-product.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddProductComponent,
     ProfileComponent,
     ProductComponent,
+    AllProductComponent,
     PhoneComponent,
     RegisterComponent,
-    SuccessComponent
+    SuccessComponent,
+    PaymentComponent
   ],
   imports: [
     

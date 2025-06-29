@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-
+export interface Product {
+  id?: string; // ID có thể không cần khi tạo mới (API tự sinh)
+  name: string;
+  tinhTrangMay: string;
+  imageUrl: string;
+  price: number;
+  accountID: string;
+}
 const API_URL = 'http://localhost:8080/api/products';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json',
@@ -27,6 +34,14 @@ export class ProductService {
     return this.http.get(API_URL ,httpOptions);
     //return of(this.products)
   }
-
+  getProductById(id: any): Observable<any> {
+    return this.http.get(API_URL+ '/'+ id ,httpOptions);
+    //return of(this.products)
+  }
+  addProduct(newProduct: Product): Observable<Product> {
+    // HttpClient.post() gửi dữ liệu newProduct đến apiUrl
+    // và mong đợi một đối tượng Product trả về (từ API).
+    return this.http.post<Product>(API_URL, newProduct);
+  }
   
 }

@@ -271,7 +271,7 @@ export class HomeComponent implements OnInit {
       { id: 'CAT001', name: 'Điện tử', iconUrl: '/assets/image/gray-circle.jpg' },
       { id: 'CAT002', name: 'Thời trang', iconUrl: '/assets/image/gray-circle.jpg' },
       { id: 'CAT003', name: 'Thức ăn', iconUrl: '/assets/image/gray-circle.jpg' },
-      { id: 'CAT004', name: 'Tái chế', iconUrl: '/assets/image/recycle.png', link: '/products' },
+      { id: 'CAT004', name: 'Thu mua', iconUrl: '/assets/image/recycle.png', link: '/all-product' },
       { id: 'CAT005', name: 'Sách', iconUrl: '/assets/image/gray-circle.jpg' },
       { id: 'CAT006', name: 'Sức khỏe', iconUrl: '/assets/image/gray-circle.jpg' },
       { id: 'CAT007', name: 'Trẻ em', iconUrl: '/assets/image/gray-circle.jpg' },

@@ -1,11 +1,11 @@
 <div class="container">
     <div *ngIf="isEdit == false">
-        <h1 class="text-center">Đăng Ký sản phẩm tái chế</h1>
+        <h1 class="text-center">Đăng ký sản phẩm tái chế</h1>
         <p class="text-center text-muted mb-4">Hãy cung cấp thông tin chi tiết về sản phẩm bạn muốn tái chế.</p>
     </div>
     <div *ngIf="isEdit == true">
-        <h1 class="text-center">Thông tin sản phẩm tái Chế</h1>
-        <p class="text-center text-muted mb-4">Thông tin chi tiết về sản phẩm bạn muốn tái chế.</p>
+        <h1 class="text-center">Thông tin sản phẩm {{ product.name}}</h1>
+        <p class="text-center text-muted mb-4">Thông tin chi tiết về sản phẩm.</p>
     </div>
         
     <div class="product-status-container" *ngIf="isEdit == true">
@@ -22,15 +22,22 @@
             </div>
         </div>
 
-        <button class="update-button" (click)="updateProductStatus()">
-            Cập nhật trạng thái tiếp theo
-        </button>
+        
 
         <div *ngIf="updateMessage" class="update-message">
             {{ updateMessage }}
         </div>
     </div>
-        <form action="#" method="post" enctype="multipart/form-data">
+    <div class="space-between">
+        <button class="update-button" (click)="updateProductStatus()">
+            Cập nhật trạng thái tiếp theo
+        </button>
+
+        <button class="update-button" (click)="navigateToPayment()">
+            Thanh toán
+        </button>
+    </div>
+        <!-- <form action="#" method="post" enctype="multipart/form-data">
             <h3>Thông tin sản phẩm</h3>
             <div class="mb-3">
                 <label for="productName" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
@@ -112,5 +119,5 @@
             </div>
 
             <button type="submit" class="btn btn-primary mt-4 w-100">Đăng ký sản phẩm</button>
-        </form>
+        </form> -->
     </div>

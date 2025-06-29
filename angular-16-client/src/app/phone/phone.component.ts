@@ -111,7 +111,7 @@ export class PhoneComponent implements OnInit {
         });
 
       // Hiển thị thông báo thành công
-      this.registrationMessage = 'Đăng ký thành công!.';
+      this.registrationMessage = 'Đăng nhập thành công!.';
       this.isSuccess = true;
       
     } else {

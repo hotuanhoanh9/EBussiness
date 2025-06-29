@@ -8,6 +8,8 @@ import { HomeService } from '../_services/home.service';
 import { FirebaseDataService } from '../_services/firebase-data.service';
 import { ActivatedRoute } from '@angular/router';
 
+import { ProductService } from '../_services/product.service';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -62,12 +64,14 @@ export class AddProductComponent implements OnInit {
   updateMessage: string = '';
   productId: string | null = null;
   isEdit = false;
-  constructor(private route: ActivatedRoute) { }
+  errorMessage: any;
+  constructor(private route: ActivatedRoute, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.productId = params.get('id');
       if(this.productId != null){
+        this.getProduct(this.productId);
         this.isEdit = true;
       }
       
@@ -131,6 +135,7 @@ export class AddProductComponent implements OnInit {
     const currentIndex = this.productStages.indexOf(this.currentStage || '');
     if (currentIndex < this.productStages.length - 1) {
       this.currentStage = this.productStages[currentIndex + 1];
+      this.updateProduct();
       this.updateMessage = `Trạng thái sản phẩm được cập nhật: ${this.currentStage}!`;
     } else {
       this.updateMessage = 'Giao dịch sản phẩm đã hoàn thành!';
@@ -162,6 +167,43 @@ export class AddProductComponent implements OnInit {
   isStageActive(stage: string): boolean {
     return this.currentStage === stage;
   }
-
+  getProduct(id: string): void {
+    // Call the getProducts method from your service
+    this.productService.getProductById(id).subscribe({
+      next: (data: any[]) => {
+        // On successful response, assign the data to the products array
+        this.product = data;
+        this.errorMessage = ''; // Clear any previous errors
+        this.currentStage = this.product.imagePath;
+        console.log('Products fetched successfully:', this.products);
+      },
+      error: (error: any) => {
+        // Handle errors
+        console.error('Error fetching products:', error);
+        this.errorMessage = 'Failed to load products. Please try again later.';
+        if (error.message) {
+            this.errorMessage += ` (${error.message})`;
+        }
+      }
+    });
+  }
+  updateProduct(){
+    var product = this.product;
+    product.imagePath = this.currentStage;
+    this.productService.addProduct(product).subscribe({
+        next: (responseProduct) => {
+          // Reset form sau khi thêm thành công
+          //this.product = null;
+        },
+        error: (error: any) => {
+          // Xử lý lỗi từ API
+          //this.message = 'Có lỗi xảy ra khi thêm sản phẩm. Vui lòng thử lại.';
+          console.error('Error adding product:', error);
+        }
+      });
+  }
+  navigateToPayment(){
+    window.location.href = '/payment'
+  }
 }
 

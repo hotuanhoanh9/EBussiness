@@ -1,0 +1,49 @@
+<div class="container">
+    <h1 class="text-center">Danh sách sản phẩm</h1>
+    
+    <button (click)="navigateToMyProduct()" class="add-new-btn-2">Sản phẩm đã chọn của tôi</button>
+    
+    <div *ngIf="products.length === 0" class="no-products-message">
+        <p>Không có sản phẩm nào để hiển thị.</p>
+    </div>
+
+    <div class="product-list-grid">
+        <div *ngFor="let product of products" class="product-item" (click)="openConditionPopup(product)">
+            <img [src]="product.imageUrl" alt="" class="image-box">
+            <h4>{{ product.name }}</h4>
+            <p><strong>Giá thu cũ:</strong> <span class="product-price">
+                        <span class="price-value">{{ formatPrice(product.oldPrice).replace('₫', '') }}</span>
+                        <span class="currency">₫</span>
+            </span></p>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+    <div class="popup-overlay" *ngIf="showConditionPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+            <h2>TÌNH TRẠNG MÁY THU CŨ</h2>
+            <button class="close-button" (click)="closeConditionPopup()">×</button>
+            </div>
+            <div class="popup-body">
+                <h3>Ngoại hình máy</h3>
+                <div class="condition-item" [ngClass]="selectedCondition == 'activated' ? 'selected': ''" (click)="selectCondition('activated')">
+                    <p><strong>Máy đã kích hoạt:</strong> Máy chính hãng VN, màn đẹp, thân máy đẹp, đủ hộp phụ kiện, kích hoạt không quá 90 ngày.</p>
+                </div>
+                <div class="condition-item" [ngClass]="selectedCondition == 'type1' ? 'selected': ''" (click)="selectCondition('type1')">
+                    <p>Loại 1: Máy hoạt động bình thường, màn đẹp, thân máy đẹp.</p>
+                </div>
+                <div class="condition-item" [ngClass]="selectedCondition == 'type2' ? 'selected': ''" (click)="selectCondition('type2')">
+                    <p>Loại 2: Máy hoạt động bình thường, màn đẹp, thân máy trầy xước nhẹ.</p>
+                </div>
+                <div class="condition-item" [ngClass]="selectedCondition == 'type3' ? 'selected': ''" (click)="selectCondition('type3')">
+                    <p>Loại 3: Máy hoạt động bình thường, màn trầy nhẹ, thân máy cấn móp nhẹ.</p>
+                </div>
+                <div class="condition-item" [ngClass]="selectedCondition == 'type4' ? 'selected': ''" (click)="selectCondition('type4')">
+                    <p>Loại 4: Máy hoạt động bình thường, ngoại hình xấu nhưng màn còn hiển thị và cảm ứng được.</p>
+                </div>
+                <div>Giá thu lại dự kiến: {{ pricePredict }}<div>
+                <button (click)="addProduct()" class="add-new-btn">Thêm vào sản phẩm của tôi</button>
+            </div>
+        </div>
+    </div>
+</div>
