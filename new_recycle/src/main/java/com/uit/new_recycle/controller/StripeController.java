@@ -1,23 +1,14 @@
 package com.uit.new_recycle.controller;
 
-import com.stripe.model.Event;
-import com.stripe.model.EventDataObjectDeserializer;
 import com.stripe.model.checkout.Session;
-import com.stripe.net.Webhook;
-import com.uit.new_recycle.entity.PaymentTransaction;
 import com.uit.new_recycle.entity.StripePayment;
 import com.uit.new_recycle.model.payment.StripePaymentRequest;
 import com.uit.new_recycle.repository.StripePaymentRepository;
 import com.uit.new_recycle.service.StripeService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -61,14 +52,14 @@ public class StripeController {
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             payment.setCreatedAt(createdAt);
             paymentRepository.save(payment);
-            return "✅ Thanh toán thành công!";
+            return "Thanh toán thành công!";
         } catch (Exception e) {
-            return "❌ Không thể xác nhận thanh toán: " + e.getMessage();
+            return "Không thể xác nhận thanh toán: " + e.getMessage();
         }
     }
 
     @GetMapping("/cancel")
     public String paymentCancel() {
-        return "❌ Đã hủy thanh toán.";
+        return "Đã hủy thanh toán.";
     }
 }
