@@ -2,6 +2,7 @@ package com.uit.new_recycle.controller;
 
 import com.uit.new_recycle.dto.VnPayRefundRequest;
 import com.uit.new_recycle.service.VnPayService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,19 @@ public class VnPayController {
     @GetMapping("/create")
     public ResponseEntity<?> createPayment(
             @RequestParam String orderId,
-            @RequestParam double amount) {
+            @RequestParam double amount,
+            HttpServletRequest request) {
         try {
-            String url = vnPayService.createPayment(orderId, amount);
+            String url = vnPayService.createPayment(orderId, amount, request);
             return ResponseEntity.ok(url);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Lỗi tạo URL VNPAY: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/vnpay-return")
+    public String paymentReturn(HttpServletRequest request) {
+        return vnPayService.handleVnPayReturn(request);
     }
 
     @GetMapping("/query")

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,11 +25,16 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/accounts/**").permitAll()
-                        .anyRequest().authenticated()
+//                        .requestMatchers("/api/accounts/**").permitAll()
+//                        .requestMatchers("/api/strip/payment/**").permitAll()
+//                        .requestMatchers("/api/payment/**").permitAll()
+//                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore((Filter) jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .addFilterBefore((Filter) jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .httpBasic(Customizer.withDefaults());
+
         return http.build();
     }
 

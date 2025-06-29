@@ -24,7 +24,7 @@ import java.util.*;
 public class VnPayService {
     private final VnPayConfig config;
 
-    public String createPayment(String orderId, double amount) throws Exception {
+    public String createPayment(String orderId, double amount, HttpServletRequest request) throws Exception {
         String vnp_TxnRef = orderId;
         String vnp_OrderInfo = "Thanh toan don hang: " + orderId;
         String vnp_Amount = String.valueOf((long) amount * 100);
@@ -41,7 +41,7 @@ public class VnPayService {
         vnp_Params.put("vnp_OrderInfo", vnp_OrderInfo);
         vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_ReturnUrl", config.getVnpReturnUrl());
-        vnp_Params.put("vnp_IpAddr", "127.0.0.1");
+        vnp_Params.put("vnp_IpAddr", request.getRemoteAddr());
         vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
         vnp_Params.put("vnp_OrderType", "other");
@@ -171,5 +171,50 @@ public class VnPayService {
         }
         return ipAdress;
     }
+
+    //Util for VNPAY
+    public String hashAllFields(Map fields) {
+        List fieldNames = new ArrayList(fields.keySet());
+        Collections.sort(fieldNames);
+        StringBuilder sb = new StringBuilder();
+        Iterator itr = fieldNames.iterator();
+        while (itr.hasNext()) {
+            String fieldName = (String) itr.next();
+            String fieldValue = (String) fields.get(fieldName);
+            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+                sb.append(fieldName);
+                sb.append("=");
+                sb.append(fieldValue);
+            }
+            if (itr.hasNext()) {
+                sb.append("&");
+            }
+        }
+        return hmacSHA512(config.getVnpHashSecret(),sb.toString());
+    }
+
+
+    public String handleVnPayReturn(HttpServletRequest request) {
+        Map<String, String[]> fields = request.getParameterMap();
+        Map<String, String> vnp_Params = new HashMap<>();
+        String vnp_SecureHash = "";
+
+        for (Map.Entry<String, String[]> entry : fields.entrySet()) {
+            if (!entry.getKey().equals("vnp_SecureHash")) {
+                vnp_Params.put(entry.getKey(), entry.getValue()[0]);
+            } else {
+                vnp_SecureHash = entry.getValue()[0];
+            }
+        }
+
+        String signValue = hashAllFields(vnp_Params);
+
+        if (signValue.equals(vnp_SecureHash)) {
+            return "Thanh toán thành công! Mã giao dịch: " + vnp_Params.get("vnp_TxnRef");
+        } else {
+            return "Chữ ký không hợp lệ";
+        }
+    }
+
 
 }
